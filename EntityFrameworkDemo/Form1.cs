@@ -28,6 +28,11 @@ namespace EntityFrameworkDemo
             dgwProducts.DataSource = _productDal.GetAll();
         }
 
+        private void SearchProducts(string key)
+        {
+            dgwProducts.DataSource = _productDal.GetByName(key);
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             _productDal.Add(new Product
@@ -69,6 +74,11 @@ namespace EntityFrameworkDemo
             });
             LoadProducts();
             MessageBox.Show("Product deleted.");
+        }
+
+        private void tbxSearch_TextChanged(object sender, EventArgs e)
+        {
+            SearchProducts(tbxSearch.Text);
         }
     }
 }
